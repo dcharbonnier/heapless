@@ -4,7 +4,6 @@ use std::{env, error::Error};
 
 fn main() -> Result<(), Box<dyn Error>> {
     let target = env::var("TARGET")?;
-
     if target.starts_with("thumbv6m-") {
         println!("cargo:rustc-cfg=armv6m");
     } else if target.starts_with("thumbv7m-") {
@@ -32,7 +31,8 @@ fn main() -> Result<(), Box<dyn Error>> {
     };
 
     match &target[..] {
-        "msp430-none-elf" | "riscv32i-unknown-none-elf" | "riscv32imc-unknown-none-elf" => {}
+        "msp430-none-elf" | "riscv32i-unknown-none-elf" | "riscv32imc-unknown-none-elf" | "avr-atmega328p
+" => {}
 
         _ => {
             println!("cargo:rustc-cfg=has_atomics");
