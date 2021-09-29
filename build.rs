@@ -4,7 +4,9 @@ use std::{env, error::Error};
 
 fn main() -> Result<(), Box<dyn Error>> {
     let target = env::var("TARGET")?;
-    if target.starts_with("thumbv6m-") {
+    if target.starts_with("avr-atmega") {
+        println!("cargo:rustc-cfg=armv6m");
+    } else if target.starts_with("thumbv6m-") {
         println!("cargo:rustc-cfg=armv6m");
     } else if target.starts_with("thumbv7m-") {
         println!("cargo:rustc-cfg=armv7m");
